@@ -1,23 +1,8 @@
-# MCP RAG Sports & Weather Agent
 
-A **proof of concept (PoC)** for an AI-powered sports and weather assistant built with **LangChain**, **Gemini**, **MCP**, and **RAG**.
-
-This project is intended as a foundation for extensive future development and extensions, including integration with **WhatsApp** and a **web-based assistant**.
-
-## Features
-
-* Current weather using OpenWeather
-* Sports information using RAG
-* MCP-based tools
-* Gemini LLM
-* Conversation memory per user
-* LLM decides which MCP tool to use
-* Web/API-based assistant
-* Tool usage and arguments displayed for debugging
 
 ## Backend
 
-All backend-related code and configuration should live inside the `backend/` folder.
+All backend-related code and configuration should live inside the this folder.
 
 The backend is responsible for:
 
@@ -33,12 +18,6 @@ The backend is responsible for:
 
 ## Getting Started
 
-From the project root:
-
-```bash
-cd backend
-```
-
 Install the backend dependencies:
 
 ```bash
@@ -50,16 +29,14 @@ Configure the required environment variables in `.env`.
 Then start the backend using the project's configured entry point, for example:
 
 ```bash
-python main.py
+ python -m uvicorn main:app --reload
 ```
 
 The exact startup command should match the backend entry-point file in this project.
 
 ## Environment Variables
 
-The backend should load secrets and configuration from environment variables rather than hard-coding them.
-
-Typical variables include:
+Setup a `.env` file and set the api keys for gemini and the open weather in the `.env` file.
 
 ```env
 GEMINI_API_KEY=your_gemini_api_key

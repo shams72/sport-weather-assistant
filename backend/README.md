@@ -2,9 +2,7 @@
 
 A **proof of concept (PoC)** for an AI-powered sports and weather assistant built with **LangChain**, **Gemini**, **MCP**, and **RAG**.
 
-The current implementation is **terminal-based** and demonstrates the core agent functionality, including tool selection, weather retrieval, sports knowledge retrieval, and conversation context.
-
-This project is intended as a **foundation for extensive future development and extensions**, including integration with WhatsApp and a web-based assistant.
+This project is intended as a foundation for extensive future development and extensions, including integration with **WhatsApp** and a **web-based assistant**.
 
 ## Features
 
@@ -14,161 +12,71 @@ This project is intended as a **foundation for extensive future development and 
 * Gemini LLM
 * Conversation memory per user
 * LLM decides which MCP tool to use
-* Terminal-based chat interface
+* Web/API-based assistant
 * Tool usage and arguments displayed for debugging
 
-## Project Structure
+## Backend
 
-```text
-mcp-rag/
-│
-├── .env
-├── agent.py
-├── server.py
-│
-└── rag/
-    └── rag.py
+All backend-related code and configuration should live inside the `backend/` folder.
+
+The backend is responsible for:
+
+1. Starting the AI assistant backend.
+2. Initializing the Gemini LLM.
+3. Connecting to the MCP tools.
+4. Loading and querying the RAG knowledge base.
+5. Providing current weather information through OpenWeather.
+6. Maintaining conversation memory per user.
+7. Letting the LLM determine which MCP tool should be called.
+8. Exposing the assistant through an API for the frontend or other clients.
+9. Displaying selected tools and their arguments for debugging during development.
+
+## Getting Started
+
+From the project root:
+
+```bash
+cd backend
 ```
 
-## MCP Tools
+Install the backend dependencies:
 
-### `get_weather`
+```bash
+pip install -r requirements.txt
+```
 
-Retrieves the current weather for a specified city using OpenWeather.
+Configure the required environment variables in `.env`.
 
-### `search_rag`
+Then start the backend using the project's configured entry point, for example:
 
-Searches the sports knowledge base for relevant information.
+```bash
+python main.py
+```
 
-The LLM determines which tool is appropriate based on the user's request.
+The exact startup command should match the backend entry-point file in this project.
 
 ## Environment Variables
 
-Create a `.env` file:
+The backend should load secrets and configuration from environment variables rather than hard-coding them.
 
-```text
-GOOGLE_API_KEY=your_gemini_api_key
+Typical variables include:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key
 OPENWEATHER_API_KEY=your_openweather_api_key
 ```
 
-Do not commit your `.env` file to GitHub.
+Add any additional MCP, database, RAG, or application configuration required by the implementation.
 
-## Install Dependencies
+## Development Direction
 
-```bash
-pip install langchain langchain-google-genai langchain-mcp-adapters fastmcp python-dotenv requests
-```
+The backend is designed as a foundation for future extensions such as:
 
-## Run
-
-Start the proof of concept agent:
-
-```bash
-python agent.py
-```
-
-The MCP server is started automatically by the agent.
-
-## Example
-
-```text
-Enter your user ID: user1
-
-You: What is the weather in Doha?
-
-TOOLS USED:
-Tool: get_weather | Arguments: {'city': 'Doha'}
-
-AGENT:
-The current weather in Doha is ...
-```
-
-Follow-up questions can use the conversation context:
-
-```text
-You: Can I go running there?
-```
-
-The agent can use the previously retrieved weather information together with the sports RAG data.
-
-## User Memory
-
-Conversation history is maintained separately using the `user_id`.
-
-For example:
-
-```text
-user1 → Doha
-user2 → Dubai
-```
-
-This keeps conversations between different users separate.
-
-## Future Development
-
-This project is currently a **proof of concept** and is intended to be **extensively extended**.
-
-Potential future development includes:
-
-### WhatsApp Assistant
-
-Integrate the agent with WhatsApp so users can interact with the sports and weather assistant through chat messages.
-
-### Web Assistant
-
-Build a web-based interface using:
-
-* **React** for the frontend
-* **FastAPI** for the backend
-* The existing LangChain agent and MCP tools as the AI layer
-
-### Future Architecture
-
-```text
-                 ┌──────────────┐
-                 │    React     │
-                 │ Web Frontend │
-                 └──────┬───────┘
-                        │
-                 ┌──────▼───────┐
-                 │   FastAPI    │
-                 │    Backend   │
-                 └──────┬───────┘
-                        │
-                 ┌──────▼───────┐
-                 │   LangChain  │
-                 │    Agent     │
-                 └──────┬───────┘
-                        │
-                 ┌──────▼───────┐
-                 │     MCP      │
-                 └──────┬───────┘
-                       / \
-                      /   \
-             ┌────────▼┐ ┌▼─────────┐
-             │ Weather │ │    RAG   │
-             │  Tool   │ │ Knowledge│
-             └─────────┘ └──────────┘
-```
-
-The goal is to keep the core agent and tool architecture reusable while adding different interfaces such as the terminal, web, and WhatsApp.
-
-## Project Status
-
-**Current:** Proof of concept, terminal-based sports and weather agent.
-
-**Planned:** Extensive development, including web and WhatsApp interfaces, improved memory, additional MCP tools, and further agent capabilities.
-
-## Technologies
-
-* Python
-* LangChain
-* Gemini
-* MCP
-* FastMCP
-* OpenWeather API
-* RAG
-* asyncio
-* React (future)
-* FastAPI (future)
-* WhatsApp integration (future)
+* Web-based chat interface
+* WhatsApp integration
+* Additional MCP tools
+* More sports data sources
+* Expanded RAG knowledge bases
+* Persistent conversation history
+* Authentication and per-user sessions
+* Production deployment

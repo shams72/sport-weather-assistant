@@ -1,13 +1,23 @@
 
-
-
-### Build the Image
+### Start By
 
 ```bash
-docker build -t project-name .
+cd cook-book
 ```
-### Run the Container
+### Install Dependencies
 
 ```bash
-docker run -p 5173:5173 project-name
+npm install
+```
+
+### Start the Development Server
+
+```bash
+npm run dev
+```
+
+The application will then be available at the URL shown in the terminal, typically:
+
+```text
+http://localhost:5173
 ```

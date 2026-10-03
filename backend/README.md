@@ -16,6 +16,16 @@ The backend is responsible for:
 8. Exposing the assistant through an API for the frontend or other clients.
 9. Displaying selected tools and their arguments for debugging during development.
 
+
+## Environment Variables
+
+Setup a `.env` file and set the api keys for gemini and the open weather in the `.env` file.
+
+```env
+GEMINI_API_KEY=your_gemini_api_key
+OPENWEATHER_API_KEY=your_openweather_api_key
+```
+
 ## Getting Started
 
 Install the backend dependencies:
@@ -34,16 +44,6 @@ Then start the backend using the project's configured entry point, for example:
 
 The exact startup command should match the backend entry-point file in this project.
 
-## Environment Variables
-
-Setup a `.env` file and set the api keys for gemini and the open weather in the `.env` file.
-
-```env
-GEMINI_API_KEY=your_gemini_api_key
-OPENWEATHER_API_KEY=your_openweather_api_key
-```
-
-Add any additional MCP, database, RAG, or application configuration required by the implementation.
 
 ## Development Direction
 

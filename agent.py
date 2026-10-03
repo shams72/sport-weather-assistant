@@ -1,11 +1,8 @@
 import os
-import asyncio
-
 from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.agents import create_agent
 from langchain_mcp_adapters.client import MultiServerMCPClient
-
 
 load_dotenv()
 
@@ -13,6 +10,8 @@ api_key = os.getenv("GOOGLE_API_KEY")
 
 if not api_key:
     raise ValueError("GOOGLE_API_KEY was not found")
+3,
+
 
 print("Gemini API key found")
 
@@ -217,6 +216,7 @@ async def process_message(
     return final_message.content
 
 
+'''
 async def main():
 
     user_id = input("Enter your user ID: ")
@@ -239,6 +239,9 @@ async def main():
             user_id=user_id,
             user_message=user_message
         )
+'''
 
+'''
 if __name__ == "__main__":
     asyncio.run(main())
+'''

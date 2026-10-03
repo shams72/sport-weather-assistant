@@ -91,7 +91,7 @@ const SearchField: React.FC = () => {
             <input
                 className="search-input"
                 type="text"
-                placeholder="Try dropping the word chicken"
+                placeholder="Try asking the weather in your City"
                 ref={inputRef}
                 onKeyDown={(e) => {
                     if (e.key === "Enter") {
